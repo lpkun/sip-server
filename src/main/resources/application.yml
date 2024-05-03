@@ -1,0 +1,29 @@
+# Tomcat
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    threads:
+      max: 1000
+      min-spare: 30
+  port: 9090
+  servlet:
+    context-path: /
+    session:
+      cookie:
+        http-only: true
+
+spring:
+  # 环境 dev|test|prod
+  profiles:
+    active: dev
+  messages:
+    encoding: UTF-8
+    basename: i18n/messages
+  # jackson时间格式化
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
