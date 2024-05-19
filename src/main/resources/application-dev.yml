@@ -1,4 +1,4 @@
 sip:
-  monitorIp: 0.0.0.0
+  monitorIp: 192.168.0.104
   port: 5060
   domain: myvoipapp.com

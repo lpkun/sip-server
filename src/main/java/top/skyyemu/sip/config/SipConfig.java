@@ -85,6 +85,7 @@ public class SipConfig {
         SipProviderImpl tcpSipProvider = (SipProviderImpl) sipStack.createSipProvider(tcpListeningPoint);
         tcpSipProvider.setDialogErrorsAutomaticallyHandled();
         tcpSipProvider.addSipListener(sipProcessorListener);
+        log.info("增加TCP监听点成功，监听IP：{}，端口：{}", sipProperties.getMonitorIp(), sipProperties.getPort());
         return tcpSipProvider;
     }
 
@@ -96,6 +97,7 @@ public class SipConfig {
         ListeningPoint udpListeningPoint = sipStack.createListeningPoint(sipProperties.getMonitorIp(), sipProperties.getPort(), "UDP");
         SipProviderImpl udpSipProvider = (SipProviderImpl) sipStack.createSipProvider(udpListeningPoint);
         udpSipProvider.addSipListener(sipProcessorListener);
+        log.info("增加UDP监听点成功，监听IP：{}，端口：{}", sipProperties.getMonitorIp(), sipProperties.getPort());
         return udpSipProvider;
     }
 }
