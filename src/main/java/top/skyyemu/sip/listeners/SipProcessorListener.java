@@ -79,7 +79,7 @@ public class SipProcessorListener implements SipListener {
         try {
             sipRequestProcessor.process(requestEvent);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("请求【方法：{}】，异常", method, e);
         }
     }
 
