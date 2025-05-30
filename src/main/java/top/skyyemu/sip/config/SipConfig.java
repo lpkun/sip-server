@@ -32,7 +32,7 @@ public class SipConfig {
      * 配置sip工厂bean
      */
     @Bean("sipFactory")
-    SipFactory createSipFactory() {
+    public SipFactory createSipFactory() {
         sipFactory = SipFactory.getInstance();
         sipFactory.setPathName("gov.nist");
         return sipFactory;
@@ -42,7 +42,7 @@ public class SipConfig {
      * 配置sip消息工厂bean
      */
     @Bean("messageFactory")
-    MessageFactory createMessageFactory(SipFactory sipFactory) throws PeerUnavailableException {
+    public MessageFactory createMessageFactory(SipFactory sipFactory) throws PeerUnavailableException {
         return sipFactory.createMessageFactory();
     }
 
@@ -50,7 +50,7 @@ public class SipConfig {
      * 配置sip请求头工厂bean
      */
     @Bean("headerFactory")
-    HeaderFactory createHeaderFactory(SipFactory sipFactory) throws PeerUnavailableException {
+    public HeaderFactory createHeaderFactory(SipFactory sipFactory) throws PeerUnavailableException {
         return sipFactory.createHeaderFactory();
     }
 
@@ -58,7 +58,7 @@ public class SipConfig {
      * 配置sip地址工厂bean
      */
     @Bean("addressFactory")
-    AddressFactory createAddressFactory(SipFactory sipFactory) throws PeerUnavailableException {
+    public AddressFactory createAddressFactory(SipFactory sipFactory) throws PeerUnavailableException {
         return sipFactory.createAddressFactory();
     }
 
@@ -66,7 +66,7 @@ public class SipConfig {
      * sip堆栈
      */
     @Bean("sipStack")
-    SipStack createSipStack() throws PeerUnavailableException {
+    public SipStack createSipStack() throws PeerUnavailableException {
         Properties properties = new Properties();
         properties.setProperty("javax.sip.STACK_NAME", "sipphone");
         properties.setProperty("gov.nist.javax.sip.TRACE_LEVEL", "0");
@@ -80,7 +80,7 @@ public class SipConfig {
      * tcpSipProvider监听
      */
     @Bean(name = "tcpSipProvider")
-    SipProviderImpl startTcpListener(SipProperties sipProperties, SipProcessorListener sipProcessorListener) throws ObjectInUseException, TooManyListenersException, TransportNotSupportedException, InvalidArgumentException {
+    public SipProviderImpl startTcpListener(SipProperties sipProperties, SipProcessorListener sipProcessorListener) throws ObjectInUseException, TooManyListenersException, TransportNotSupportedException, InvalidArgumentException {
         ListeningPoint tcpListeningPoint = sipStack.createListeningPoint(sipProperties.getMonitorIp(), sipProperties.getPort(), "TCP");
         SipProviderImpl tcpSipProvider = (SipProviderImpl) sipStack.createSipProvider(tcpListeningPoint);
         tcpSipProvider.setDialogErrorsAutomaticallyHandled();
@@ -93,7 +93,7 @@ public class SipConfig {
      * udpSipProvider监听
      */
     @Bean(name = "udpSipProvider")
-    SipProviderImpl startUdpListener(SipProperties sipProperties, SipProcessorListener sipProcessorListener) throws TransportNotSupportedException, InvalidArgumentException, ObjectInUseException, TooManyListenersException {
+    public SipProviderImpl startUdpListener(SipProperties sipProperties, SipProcessorListener sipProcessorListener) throws TransportNotSupportedException, InvalidArgumentException, ObjectInUseException, TooManyListenersException {
         ListeningPoint udpListeningPoint = sipStack.createListeningPoint(sipProperties.getMonitorIp(), sipProperties.getPort(), "UDP");
         SipProviderImpl udpSipProvider = (SipProviderImpl) sipStack.createSipProvider(udpListeningPoint);
         udpSipProvider.addSipListener(sipProcessorListener);

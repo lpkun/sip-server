@@ -67,7 +67,6 @@ public class SipProcessorListener implements SipListener {
         }
     }
 
-
     @Override
     public void processRequest(RequestEvent requestEvent) {
         String method = requestEvent.getRequest().getMethod();
@@ -95,7 +94,7 @@ public class SipProcessorListener implements SipListener {
         try {
             sipResponseProcessor.process(responseEvent);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("响应【方法：{}】，异常", method, e);
         }
     }
 

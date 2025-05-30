@@ -1,4 +1,13 @@
 sip:
-  monitorIp: 192.168.0.104
+  #监控ip地址，0.0.0.0监听所有网卡ip
+  monitorIp: 0.0.0.0
+  #对外的ip地址（信令携带响应服务端的ip），***置空将自动获取本机ip地址***
+  outerIp:
+  #sip服务端口
   port: 5060
+  #暂时没什么用，暂时写死
   domain: myvoipapp.com
+  #sip账号生存时间，单位：分钟。最后一次心跳超过此时间则下线
+  survivalTime: 1
+  # RTP端口范围
+  rtpPortRange: 30000,30500
